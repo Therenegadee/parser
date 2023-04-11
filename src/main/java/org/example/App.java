@@ -48,7 +48,15 @@ public class App {
         XSSFSheet spreadsheet = wb.createSheet("Projects");
         XSSFRow row;
 
-        for (int i = 0; i < infoList.size(); i++) {
+        row = spreadsheet.createRow(0);
+        Map<Integer, String> headerMap = getHeaderMap();
+        for (int j = 0; j < 7; j++) {
+            Cell cell = row.createCell(j);
+            cell.setCellValue(headerMap.get(j));
+        }
+        System.out.println("Wrote %s row".formatted(0));
+
+        for (int i = 1; i < infoList.size(); i++) {
             row = spreadsheet.createRow(i);
             Map<Integer, String> dataMap = getDataMap(infoList, i);
             for (int j = 0; j < 7; j++) {
@@ -77,6 +85,16 @@ public class App {
                 3, info.getFundsRaised(),
                 4, info.getSuccessPercentage(),
                 5, info.getPeopleSupport()
+        ));
+    }
+    private static Map<Integer, String> getHeaderMap() {
+        return new LinkedHashMap<>(Map.of(
+                0, "date_start",
+                1, "date_end",
+                2, "project_name",
+                3, "funds_raised",
+                4, "success_percentage",
+                5, "people_support"
         ));
     }
 }

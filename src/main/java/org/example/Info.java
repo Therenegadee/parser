@@ -1,5 +1,8 @@
 package org.example;
 
+import lombok.Builder;
+
+@Builder
 public class Info {
 
     private String projectName;
@@ -9,12 +12,12 @@ public class Info {
     private String fundsRaised;
     private String successPercentage;
 
-    public Info(String projectName, String start_time, String end_time, String fundsRaised, String successPercentage, String peopleSupport) {
-        this.projectName = projectName;
+    public Info(String start_time, String end_time, String projectName, String fundsRaised, String successPercentage, String peopleSupport) {
         this.start_time = start_time;
         this.end_time = end_time;
-        this.peopleSupport = peopleSupport;
+        this.projectName = projectName;
         this.fundsRaised = fundsRaised;
+        this.peopleSupport = peopleSupport;
         this.successPercentage = successPercentage;
     }
 
