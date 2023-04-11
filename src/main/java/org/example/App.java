@@ -12,15 +12,9 @@ import java.util.*;
 public class App {
 
     public static void main(String[] args) throws IOException {
-        File file = new File("/Users/aye/Desktop/megaDataSet/charity_url.xlsx");
-        readExcel(file).forEach(info -> {
-            try {
-                exportData(info.getDateStart(), info.getDateEnd(), info.getProjectName(), info.getFundsRaised(), info.getSuccessPercentage(), info.getPeopleSupport());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-        });
+        File file = new File("./charity_url.xlsx");
+        var data = readExcel(file);
+        exportData(data);
     }
 
     public static Info getInfo(String cell) throws IOException {
@@ -39,41 +33,51 @@ public class App {
         FileInputStream inputStream = new FileInputStream(file);
         XSSFWorkbook workBook = new XSSFWorkbook(inputStream);
         XSSFSheet sheet = workBook.getSheetAt(0);
-        for (int i = 1; i < 20; i++) {
+        for (int i = 0; i < 20; i++) {
             XSSFRow row = sheet.getRow(i);
             String cell = row.getCell(0).toString();
             infoList.add(getInfo(cell));
+            System.out.println("Read %s row".formatted(i));
         }
         inputStream.close();
         return infoList;
     }
 
-    public static void exportData(String start_time, String end_time, String projectName, String fundsRaised, String successPercentage, String peopleSupport) throws IOException {
+    public static void exportData(List<Info> infoList) {
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet spreadsheet = wb.createSheet("Projects");
         XSSFRow row;
-        Map<String, Object[]> projects = new TreeMap<>();
-        int s = 1;
-        projects.put(String.valueOf(s), new Object[]{"start_time", "end_time", "projectName", "fundsRaised", "successPercentage", "peopleSupport"});
-        for (int i = 0; i < 20; i++) {
-            s++;
-            String p = String.valueOf(s);
-            projects.put(p, new Object[]{start_time, end_time, projectName, fundsRaised, successPercentage, peopleSupport});
+
+        for (int i = 0; i < infoList.size(); i++) {
+            row = spreadsheet.createRow(i);
+            Map<Integer, String> dataMap = getDataMap(infoList, i);
+            for (int j = 0; j < 7; j++) {
+                Cell cell = row.createCell(j);
+                cell.setCellValue(dataMap.get(j));
             }
-            Set<String> keyid = projects.keySet();
-            int rowid = 0;
-            for (String key : keyid) {
-                row = spreadsheet.createRow(rowid++);
-                Object[] objectArr = projects.get(key);
-                int cellid = 0;
-                for (Object obj : objectArr) {
-                    Cell cell = row.createCell(cellid++);
-                    cell.setCellValue((String) obj);
-            }
+            System.out.println("Wrote %s row".formatted(i));
         }
-        FileOutputStream out = new FileOutputStream(("/Users/aye/Desktop/megaDataSet/charity.xlsx"));
-        wb.write(out);
-        out.close();
+        saveXlsx(wb);
+    }
+
+    private static void saveXlsx(XSSFWorkbook wb) {
+        try (FileOutputStream out = new FileOutputStream(("./charity.xlsx"))) {
+            wb.write(out);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static Map<Integer, String> getDataMap(List<Info> infoList, int i) {
+        Info info = infoList.get(i);
+        return new LinkedHashMap<>(Map.of(
+                0, info.getDateStart(),
+                1, info.getDateEnd(),
+                2, info.getProjectName(),
+                3, info.getFundsRaised(),
+                4, info.getSuccessPercentage(),
+                5, info.getPeopleSupport()
+        ));
     }
 }
 
