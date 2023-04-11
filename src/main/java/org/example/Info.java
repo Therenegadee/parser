@@ -3,16 +3,16 @@ package org.example;
 public class Info {
 
     private String projectName;
-    private String dateStart;
-    private String dateEnd;
+    private String start_time;
+    private String end_time;
     private String peopleSupport;
     private String fundsRaised;
     private String successPercentage;
 
-    public Info(String projectName, String dateStart, String dateEnd, String fundsRaised, String successPercentage, String peopleSupport) {
+    public Info(String projectName, String start_time, String end_time, String fundsRaised, String successPercentage, String peopleSupport) {
         this.projectName = projectName;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
+        this.start_time = start_time;
+        this.end_time = end_time;
         this.peopleSupport = peopleSupport;
         this.fundsRaised = fundsRaised;
         this.successPercentage = successPercentage;
@@ -27,19 +27,19 @@ public class Info {
     }
 
     public String getDateStart() {
-        return dateStart;
+        return start_time;
     }
 
-    public void setDateStart(String dateStart) {
-        this.dateStart = dateStart;
+    public void setDateStart(String start_time) {
+        this.start_time = start_time;
     }
 
     public String getDateEnd() {
-        return dateEnd;
+        return end_time;
     }
 
-    public void setDateEnd(String dateEnd) {
-        this.dateEnd = dateEnd;
+    public void setDateEnd(String end_time) {
+        this.end_time = end_time;
     }
 
     public String getPeopleSupport() {
@@ -67,13 +67,6 @@ public class Info {
     }
     @Override
     public String toString() {
-        return "Info{" +
-                "projectName='" + projectName + '\'' +
-                ", dateStart='" + dateStart + '\'' +
-                ", dateEnd='" + dateEnd + '\'' +
-                ", peopleSupport='" + peopleSupport + '\'' +
-                ", fundsRaised='" + fundsRaised + '\'' +
-                ", successPercentage='" + successPercentage + '\'' +
-                '}';
+        return start_time + end_time + projectName + fundsRaised + successPercentage + peopleSupport;
     }
 }
