@@ -58,19 +58,17 @@ public class App {
         for (int i = 0; i < 20; i++) {
             s++;
             String p = String.valueOf(s);
-            for (i = 0; i < 20; i++) {
-                projects.put(p, new Object[]{start_time, end_time, projectName, fundsRaised, successPercentage, peopleSupport});
-                Set<String> keyid = projects.keySet();
-                int rowid = 0;
-                for (String key : keyid) {
-                    row = spreadsheet.createRow(rowid++);
-                    Object[] objectArr = projects.get(key);
-                    int cellid = 0;
-                    for (Object obj : objectArr) {
-                        Cell cell = row.createCell(cellid++);
-                        cell.setCellValue((String) obj);
-                    }
-                }
+            projects.put(p, new Object[]{start_time, end_time, projectName, fundsRaised, successPercentage, peopleSupport});
+            }
+            Set<String> keyid = projects.keySet();
+            int rowid = 0;
+            for (String key : keyid) {
+                row = spreadsheet.createRow(rowid++);
+                Object[] objectArr = projects.get(key);
+                int cellid = 0;
+                for (Object obj : objectArr) {
+                    Cell cell = row.createCell(cellid++);
+                    cell.setCellValue((String) obj);
             }
         }
         FileOutputStream out = new FileOutputStream(("/Users/aye/Desktop/megaDataSet/charity.xlsx"));
@@ -78,3 +76,4 @@ public class App {
         out.close();
     }
 }
+
