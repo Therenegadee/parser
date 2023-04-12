@@ -10,10 +10,19 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ExcelImportExport {
+    public static Map<Integer, String> HEADER_DATA = new LinkedHashMap<>(Map.of(
+            0, "date_start",
+            1, "date_end",
+            2, "project_name",
+            3, "funds_raised",
+            4, "success_percentage",
+            5, "people_support"
+    ));
     public static List<Info> readExcel(File file, int amountOfRows) throws IOException {
         List<Info> infoList = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(file);
@@ -30,7 +39,7 @@ public class ExcelImportExport {
         return infoList;
     }
 
-    public static void exportData(List<Info> infoList, Map<Integer, String> HEADER_DATA, String pathToOutputFile) {
+    public static void exportData(List<Info> infoList, String pathToOutputFile) {
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet spreadsheet = wb.createSheet("Projects");
         fillTable(spreadsheet, 0, HEADER_DATA);
