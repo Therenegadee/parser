@@ -6,14 +6,14 @@ import java.io.*;
 
 public class Main {
 
-    static int amountOfRows = 1431;
-    static String pathToExcelTable = "./animal_rescue_url.xlsx";
-    static String pathToOutputFile = "./animal_rescue.xlsx";
+    static int amountOfRows = 4;
+    static String pathToExcelTable = "./charity_url.xlsx";
+    static String pathToOutputFile = "./charity.xlsx";
 
 
     public static void main(String[] args) throws IOException {
         File file = new File(pathToExcelTable);
-        var data = ExcelImportExport.readExcel(file, amountOfRows);
+        var data = ExcelImportExport.readExcel(file,amountOfRows);
         ExcelImportExport.exportData(data, pathToOutputFile);
     }
 

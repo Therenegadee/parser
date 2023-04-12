@@ -39,14 +39,11 @@ public class ExcelImportExport {
         return infoList;
     }
 
-    public static void exportData(List<Info> infoList, String pathToOutputFile) {
-        XSSFWorkbook wb = new XSSFWorkbook();
-        XSSFSheet spreadsheet = wb.createSheet("Projects");
-        fillTable(spreadsheet, 0, HEADER_DATA);
-        for (int i = 1; i < infoList.size(); i++) {
-            fillTable(spreadsheet, i, DataMap.getDataMap(infoList, i));
+    private static void createCell(XSSFRow row, Map<Integer, String> headerMap) {
+        for (int j = 0; j < 7; j++) {
+            Cell cell = row.createCell(j);
+            cell.setCellValue(headerMap.get(j));
         }
-        saveXlsx(wb, pathToOutputFile);
     }
     private static void fillTable(XSSFSheet spreadsheet, int rownum, Map<Integer, String> HeaderMap) {
         XSSFRow row;
@@ -56,11 +53,14 @@ public class ExcelImportExport {
         System.out.println("Wrote %s row".formatted(rownum));
     }
 
-    private static void createCell(XSSFRow row, Map<Integer, String> headerMap) {
-        for (int j = 0; j < 7; j++) {
-            Cell cell = row.createCell(j);
-            cell.setCellValue(headerMap.get(j));
+    public static void exportData(List<Info> infoList, String pathToOutputFile) {
+        XSSFWorkbook wb = new XSSFWorkbook();
+        XSSFSheet spreadsheet = wb.createSheet("Projects");
+        fillTable(spreadsheet, 0, HEADER_DATA);
+        for (int i = 1; i < infoList.size(); i++) {
+            fillTable(spreadsheet, i, DataMap.getDataMap(infoList, i));
         }
+        saveXlsx(wb, pathToOutputFile);
     }
 
     private static void saveXlsx(XSSFWorkbook wb, String pathToOutputFile) {
