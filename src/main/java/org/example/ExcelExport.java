@@ -14,13 +14,20 @@ import java.util.Map;
 
 public class ExcelExport {
 
-    private final Map<Integer, String> headerData;
+    private final List<String> headerData;
 
-    public ExcelExport(Map<Integer, String> headerData) {
+    public ExcelExport(List<String> headerData) {
         this.headerData = headerData;
     }
 
-    private static void createCell(XSSFRow row, Map<Integer, String> data) {
+    private void createHeader(XSSFRow row) {
+        for (int j = 0; j < 7; j++) {
+            Cell cell = row.createCell(j);
+            cell.setCellValue(headerData.get(j));
+        }
+    }
+
+    private void createCell(XSSFRow row, Map<Integer, String> data) {
         for (int j = 0; j < 7; j++) {
             Cell cell = row.createCell(j);
             cell.setCellValue(data.get(j));
@@ -30,7 +37,7 @@ public class ExcelExport {
     private void fillHeader(XSSFSheet spreadsheet) {
         XSSFRow row;
         row = spreadsheet.createRow(0);
-        createCell(row, headerData);
+        createHeader(row);
         System.out.println("Wrote header");
     }
 
