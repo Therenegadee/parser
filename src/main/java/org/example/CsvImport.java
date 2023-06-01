@@ -8,25 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvImport {
+    private final HTMLParser htmlParser = new HTMLParser();
     public CsvImport () {}
-    public List<Info> parseCSV(File file) throws IOException {
+    public List<Info> parseCSV(File file) {
         List<Info> infoList = new ArrayList<>();
-        HTMLParser htmlParser = new HTMLParser();
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line;
-        String[] tempArr;
-        int i = 0;
-        while ((line = bufferedReader.readLine()) != null) {
-            String delimiter = ",";
-            tempArr = line.split(delimiter);
-            for (String tempStr : tempArr) {
-                infoList.add(htmlParser.parsePage(tempStr));
-                System.out.printf("Read %s row%n", i);
-
-            } i++;
+        try(FileReader fileReader = new FileReader(file)) {
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                infoList.add(htmlParser.parsePage(line));
+                System.out.printf("Read %s row%n", infoList.size());
+            }
+            bufferedReader.close();
+            return infoList;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        bufferedReader.close();
-        return infoList;
+
     }
 }

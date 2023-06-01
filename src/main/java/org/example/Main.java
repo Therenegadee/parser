@@ -3,6 +3,7 @@ package org.example;
 
 import java.io.*;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -14,14 +15,14 @@ public class Main {
     private static final String CHOOSE_FILE_PATH_IN = "Введите путь к файлу, из которого хотите читать ссылки: ";
     private static final String CHOOSE_FILE_PATH_OUT = "Введите путь к файлу вывода: ";
     private static final Scanner SC = new Scanner(System.in);
-    private static final Map<Integer, String> HEADER_DATA = new LinkedHashMap<>(Map.of(
-            0, "date_start",
-            1, "date_end",
-            2, "project_name",
-            3, "funds_raised",
-            4, "success_percentage",
-            5, "people_support"
-    ));
+    private static final List<String> HEADER_DATA = List.of(
+            "date_start",
+            "date_end",
+            "project_name",
+            "funds_raised",
+            "success_percentage",
+            "people_support"
+    );
 
     public static void main(String[] args) throws IOException {
         System.out.println(CHOOSE_FILE_FORMAT);
