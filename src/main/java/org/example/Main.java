@@ -31,18 +31,14 @@ public class Main {
             var data = csvImport.parseCSV(inputFile);
             System.out.println("Введите путь к файлу вывода: ");
             csvExport.saveCSV(data, HEADER_DATA, sc.next());
-            /*CsvImport csvImport= new CsvImport();
-            var data = csvImport.readCSV(file);
-            CsvExport csvExport= new CsvExport();
-            System.out.println("Введите путь к файлу вывода: ");
-            csvExport.writeCSV(HEADER_DATA, data, sc.next());*/
         } else if (chooseFormat.equals(".xlsx")) {
             System.out.println("Введите путь к файлу, из которого хотите читать ссылки: ");
             File file = new File(sc.next());
-            ExcelImportExport excelImportExport = new ExcelImportExport(HEADER_DATA);
-            var data = excelImportExport.readExcel(file, amountOfRows);
+            ExcelImport excelImport = new ExcelImport();
+            ExcelExport excelExport = new ExcelExport(HEADER_DATA);
+            var data = excelImport.readExcel(file, amountOfRows);
             System.out.println("Введите путь к файлу вывода: ");
-            excelImportExport.exportData(data, sc.next());
+            excelExport.exportData(data, sc.next());
         } else {
             System.err.println("ошибка");
         }
