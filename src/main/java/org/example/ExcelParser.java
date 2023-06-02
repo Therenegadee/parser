@@ -19,7 +19,7 @@ public class ExcelParser {
         XSSFWorkbook workBook = new XSSFWorkbook(inputStream);
         XSSFSheet sheet = workBook.getSheetAt(0);
         HTMLParser htmlParser = new HTMLParser();
-        for (int i = 0; i < amountOfRows; i++) {
+        for (int i = 0; i <= sheet.getLastRowNum(); i++) {
             XSSFRow row = sheet.getRow(i);
             String cell = row.getCell(0).toString();
             infoList.add(htmlParser.parsePage(cell));

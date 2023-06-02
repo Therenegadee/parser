@@ -21,14 +21,14 @@ public class ExcelExporter {
     }
 
     private void createHeader(XSSFRow row) {
-        for (int j = 0; j < 7; j++) {
+        for (int j = 0; j < 6; j++) {
             Cell cell = row.createCell(j);
             cell.setCellValue(headerData.get(j));
         }
     }
 
     private void createCell(XSSFRow row, Map<Integer, String> data) {
-        for (int j = 0; j < 7; j++) {
+        for (int j = 0; j < 6; j++) {
             Cell cell = row.createCell(j);
             cell.setCellValue(data.get(j));
         }
@@ -58,7 +58,7 @@ public class ExcelExporter {
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet spreadsheet = wb.createSheet("Projects");
         fillHeader(spreadsheet);
-        for (int i = 1; i < infoList.size(); i++) {
+        for (int i = 0; i < infoList.size(); i++) {
             fillTable(spreadsheet, i, DataMap.getDataMap(infoList, i));
         }
         saveXlsx(wb, pathToOutputFile);
