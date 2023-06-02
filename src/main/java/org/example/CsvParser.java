@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CsvImport {
+public class CsvParser {
     private final HTMLParser htmlParser = new HTMLParser();
-    public CsvImport () {}
+    public CsvParser () {
+
+    }
     public List<Info> parseCSV(File file) {
         List<Info> infoList = new ArrayList<>();
         try(FileReader fileReader = new FileReader(file)) {

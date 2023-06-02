@@ -2,9 +2,7 @@ package org.example;
 
 
 import java.io.*;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 
@@ -28,28 +26,35 @@ public class Main {
         System.out.println(CHOOSE_FILE_FORMAT);
         String chooseFormat = SC.next();
         if (chooseFormat.equals(".csv")) {
-            System.out.println(CHOOSE_FILE_PATH_IN);
-            File inputFile = new File(SC.next());
-            CsvImport csvImport = new CsvImport();
-            CsvExport csvExport = new CsvExport();
-            var data = csvImport.parseCSV(inputFile);
-            System.out.println(CHOOSE_FILE_PATH_OUT);
-            csvExport.saveCSV(data, HEADER_DATA, SC.next());
+           csvParse();
         } else if (chooseFormat.equals(".xlsx")) {
-            System.out.println(CHOOSE_FILE_PATH_IN);
-            File file = new File(SC.next());
-            ExcelImport excelImport = new ExcelImport();
-            ExcelExport excelExport = new ExcelExport(HEADER_DATA);
-            var data = excelImport.readExcel(file, AMOUNT_OF_ROWS);
-            System.out.println(CHOOSE_FILE_PATH_OUT);
-            excelExport.exportData(data, SC.next());
-//        } else if (chooseFormat.equals(".doc")) {
+            excelParse();
+//      } else if (chooseFormat.equals(".doc")) {
 //            System.out.println(CHOOSE_FILE_PATH_IN);
 //            File file = new File(SC.next());
 //            System.out.println(CHOOSE_FILE_PATH_OUT);
         } else {
             System.err.println("Ошибка");
         }
+    }
+
+    public static void csvParse () throws IOException {
+        System.out.println(CHOOSE_FILE_PATH_IN);
+        File inputFile = new File(SC.next());
+        CsvParser csvParser = new CsvParser();
+        CsvExporter csvExporter = new CsvExporter();
+        var data = csvParser.parseCSV(inputFile);
+        System.out.println(CHOOSE_FILE_PATH_OUT);
+        csvExporter.saveCSV(data, HEADER_DATA, SC.next());
+    }
+    public static void excelParse () throws IOException {
+        System.out.println(CHOOSE_FILE_PATH_IN);
+        File file = new File(SC.next());
+        ExcelParser excelParser = new ExcelParser();
+        ExcelExporter excelExporter = new ExcelExporter(HEADER_DATA);
+        var data = excelParser.parseExcel(file, AMOUNT_OF_ROWS);
+        System.out.println(CHOOSE_FILE_PATH_OUT);
+        excelExporter.exportData(data, SC.next());
     }
 }
 

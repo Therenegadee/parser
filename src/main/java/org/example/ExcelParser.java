@@ -10,8 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExcelImport {
-    public List<Info> readExcel(File file, int amountOfRows) throws IOException {
+public class ExcelParser {
+    public ExcelParser () {
+    }
+    public List<Info> parseExcel(File file, int amountOfRows) throws IOException {
         List<Info> infoList = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(file);
         XSSFWorkbook workBook = new XSSFWorkbook(inputStream);

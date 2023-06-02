@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 
-public class ExcelExport {
+public class ExcelExporter {
 
     private final List<String> headerData;
 
-    public ExcelExport(List<String> headerData) {
+    public ExcelExporter(List<String> headerData) {
         this.headerData = headerData;
     }
 

@@ -6,9 +6,9 @@ import java.io.*;
 import java.util.List;
 import java.util.Map;
 
-public class CsvExport {
+public class CsvExporter {
 
-    public CsvExport() {
+    public CsvExporter() {
     }
 
     private void writeCSV(List<String> headerData, List<Info> infoList, String path) throws IOException {
