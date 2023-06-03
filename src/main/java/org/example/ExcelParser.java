@@ -13,7 +13,7 @@ import java.util.List;
 public class ExcelParser {
     public ExcelParser () {
     }
-    public List<Info> parseExcel(File file, int amountOfRows) throws IOException {
+    public List<Info> parseExcel(File file) throws IOException {
         List<Info> infoList = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(file);
         XSSFWorkbook workBook = new XSSFWorkbook(inputStream);

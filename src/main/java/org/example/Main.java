@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final int AMOUNT_OF_ROWS = 4;
     private static final String CHOOSE_FILE_FORMAT = "Введите формат файла, из которого вы хотите прочитать ссылки: .csv или .xlsx";
     private static final String CHOOSE_FILE_PATH_IN = "Введите путь к файлу, из которого хотите читать ссылки: ";
     private static final String CHOOSE_FILE_PATH_OUT = "Введите путь к файлу вывода: ";
@@ -45,7 +44,7 @@ public class Main {
         File file = new File(SC.next());
         ExcelParser excelParser = new ExcelParser();
         ExcelExporter excelExporter = new ExcelExporter(HEADER_DATA);
-        var data = excelParser.parseExcel(file, AMOUNT_OF_ROWS);
+        var data = excelParser.parseExcel(file);
         System.out.println(CHOOSE_FILE_PATH_OUT);
         excelExporter.exportData(data, SC.next());
     }

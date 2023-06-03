@@ -59,7 +59,8 @@ public class ExcelExporter {
         XSSFSheet spreadsheet = wb.createSheet("Projects");
         fillHeader(spreadsheet);
         for (int i = 0; i < infoList.size(); i++) {
-            fillTable(spreadsheet, i, DataMap.getDataMap(infoList, i));
+            int rownum = 1+i;
+            fillTable(spreadsheet, rownum, DataMap.getDataMap(infoList, i));
         }
         saveXlsx(wb, pathToOutputFile);
     }
