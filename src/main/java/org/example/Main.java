@@ -25,16 +25,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println(CHOOSE_FILE_FORMAT);
         String chooseFormat = SC.next();
-        if (chooseFormat.equals(".csv")) {
-           csvParse();
-        } else if (chooseFormat.equals(".xlsx")) {
-            excelParse();
-//      } else if (chooseFormat.equals(".doc")) {
-//            System.out.println(CHOOSE_FILE_PATH_IN);
-//            File file = new File(SC.next());
-//            System.out.println(CHOOSE_FILE_PATH_OUT);
-        } else {
-            System.err.println("Ошибка");
+        switch (chooseFormat) {
+            case ".csv" -> csvParse();
+            case ".xlsx" -> excelParse();
         }
     }
 
