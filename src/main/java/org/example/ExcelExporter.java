@@ -45,7 +45,7 @@ public class ExcelExporter {
         XSSFRow row;
         row = spreadsheet.createRow(rownum);
         createCell(row, data);
-        System.out.println("Wrote %s row".formatted(rownum));
+        System.out.printf("Wrote %s row%n", rownum);
     }
     private void saveXlsx(XSSFWorkbook wb, String pathToOutputFile) {
         try (FileOutputStream out = new FileOutputStream((pathToOutputFile))) {

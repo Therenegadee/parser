@@ -18,14 +18,17 @@ public class CsvExporter {
         writer.writeNext(headerData.toArray(String[]::new));
         for (int i = 0; i < infoList.size(); i++) {
             Map<Integer, String> infoArray = (DataMap.getDataMap(infoList, i));
-            writer.writeNext(infoArray.values().toArray(new String[0]));
+            writer.writeNext(infoArray.values().toArray(String[]::new));
             System.out.printf("Wrote %s row%n", i);
-            i++;
         }
     }
 
-    public void saveCSV(List<Info> data, List<String> headerData, String pathOutput) throws IOException {
+    public void saveCSV(List<Info> data, List<String> headerData, String pathOutput) {
         System.out.println("Введите путь к файлу вывода: ");
-        writeCSV(headerData, data, pathOutput);
+        try {
+            writeCSV(headerData, data, pathOutput);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
