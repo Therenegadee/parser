@@ -5,6 +5,7 @@ package org.example;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class CsvParser {
     private final HTMLParser htmlParser = new HTMLParser();
@@ -25,4 +26,12 @@ public class CsvParser {
         }
     }
 
+    public List<Info> parseCSV(String chooseFilePathIn) {
+        System.out.println(chooseFilePathIn);
+        Scanner sc = new Scanner(System.in);
+        File inputFile = new File(sc.next());
+        CsvParser csvParser = new CsvParser();
+        var data = csvParser.readCSV(inputFile);
+        return data;
+    }
 }

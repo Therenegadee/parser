@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 
 public class ExcelExporter {
@@ -54,7 +55,7 @@ public class ExcelExporter {
             throw new RuntimeException(e);
         }
     }
-    public void exportData(List<Info> infoList, String pathToOutputFile) {
+    public void preprocessingData(List<Info> infoList, String pathToOutputFile) {
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet spreadsheet = wb.createSheet("Projects");
         fillHeader(spreadsheet);
@@ -63,5 +64,12 @@ public class ExcelExporter {
             fillTable(spreadsheet, rownum, DataMap.getDataMap(infoList, i));
         }
         saveXlsx(wb, pathToOutputFile);
+    }
+
+    public void excelExport (List<Info> data, List<String> headerData, String chooseFilePathOut) {
+        ExcelExporter excelExporter = new ExcelExporter(headerData);
+        Scanner sc = new Scanner(System.in);
+        System.out.println(chooseFilePathOut);
+        excelExporter.preprocessingData(data, sc.next());
     }
 }

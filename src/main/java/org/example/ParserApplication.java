@@ -20,51 +20,55 @@ public class ParserApplication {
             "people_support"
     );
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println(CHOOSE_INPUT_FILE_FORMAT);
         String chooseFormatInput = SC.next();
+        CsvParser csvParser = new CsvParser();
+        ExcelParser excelParser = new ExcelParser();
         List<Info> parsedData = switch (chooseFormatInput) {
-            case ".csv" -> csvParse();
-            case ".xlsx" -> excelParse();
+            case ".csv" -> csvParser.parseCSV(CHOOSE_FILE_PATH_IN);
+            case ".xlsx" -> excelParser.parseExcel(CHOOSE_FILE_PATH_IN);
             /*case ".docx" -> {
             }*/
             default -> throw new IllegalStateException("Unexpected value: " + chooseFormatInput);
         };
         System.out.println(CHOOSE_OUTPUT_FILE_FORMAT);
         String chooseFormatOutput = SC.next();
+        CsvExporter csvExporter = new CsvExporter();
+        ExcelExporter excelExporter = new ExcelExporter(HEADER_DATA);
         switch (chooseFormatOutput) {
-            case ".csv" -> csvExport(parsedData);
-            case ".xlsx" -> excelExport(parsedData);
+            case ".csv" -> csvExporter.exportCSV(parsedData, HEADER_DATA, CHOOSE_FILE_PATH_OUT);
+            case ".xlsx" -> excelExporter.excelExport(parsedData, HEADER_DATA, CHOOSE_FILE_PATH_OUT);
             default -> throw new IllegalStateException("Unexpected value: " + chooseFormatOutput);
         }
     }
 
-    public static List<Info> csvParse() {
-        System.out.println(CHOOSE_FILE_PATH_IN);
-        File inputFile = new File(SC.next());
-        CsvParser csvParser = new CsvParser();
-        var data = csvParser.readCSV(inputFile);
-        return data;
-    }
+//    public static List<Info> csvParse() {
+//        System.out.println(CHOOSE_FILE_PATH_IN);
+//        File inputFile = new File(SC.next());
+//        CsvParser csvParser = new CsvParser();
+//        var data = csvParser.readCSV(inputFile);
+//        return data;
+//    }
 
-    public static void csvExport(List<Info> data) {
-        CsvExporter csvExporter = new CsvExporter();
-        System.out.println(CHOOSE_FILE_PATH_OUT);
-        csvExporter.saveCSV(data, HEADER_DATA, SC.next());
-    }
+//    public static void csvExport(List<Info> data) {
+//        CsvExporter csvExporter = new CsvExporter();
+//        System.out.println(CHOOSE_FILE_PATH_OUT);
+//        csvExporter.saveCSV(data, HEADER_DATA, SC.next());
+//    }
 
 
-    public static List<Info> excelParse() throws IOException {
-        System.out.println(CHOOSE_FILE_PATH_IN);
-        File file = new File(SC.next());
-        ExcelParser excelParser = new ExcelParser();
-        var data = excelParser.parseExcel(file);
-        return data;
-    }
+//    public static List<Info> excelParse() throws IOException {
+//        System.out.println(CHOOSE_FILE_PATH_IN);
+//        File file = new File(SC.next());
+//        ExcelParser excelParser = new ExcelParser();
+//        var data = excelParser.readExcel(file);
+//        return data;
+//    }
 
-    public static void excelExport(List<Info> data) {
-        ExcelExporter excelExporter = new ExcelExporter(HEADER_DATA);
-        System.out.println(CHOOSE_FILE_PATH_OUT);
-        excelExporter.exportData(data, SC.next());
-    }
+//    public static void excelExport(List<Info> data) {
+//        ExcelExporter excelExporter = new ExcelExporter(HEADER_DATA);
+//        System.out.println(CHOOSE_FILE_PATH_OUT);
+//        excelExporter.preprocessingData(data, SC.next());
+//    }
 }

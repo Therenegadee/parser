@@ -5,6 +5,7 @@ import com.opencsv.CSVWriter;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class CsvExporter {
 
@@ -30,5 +31,11 @@ public class CsvExporter {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static void exportCSV(List<Info> data, List <String> headerData, String filePathOut) {
+        CsvExporter csvExporter = new CsvExporter();
+        Scanner sc = new Scanner(System.in);
+        System.out.println(filePathOut);
+        csvExporter.saveCSV(data, headerData, sc.next());
     }
 }
