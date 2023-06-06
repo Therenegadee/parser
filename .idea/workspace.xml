@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cb5112d-ebd9-48d5-8024-9efe460dce33" name="Changes" comment="Fixed problems with separator in CsvExporter" />
+    <list default="true" id="2cb5112d-ebd9-48d5-8024-9efe460dce33" name="Changes" comment="Added SneakyThrows exceptions">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/InputMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/OutputMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ParserApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ParserApplication.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,7 +226,35 @@
       <option name="project" value="LOCAL" />
       <updated>1686051086117</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fixed problems with separator in CsvExporter">
+      <created>1686051147469</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1686051147469</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Fixed problems with separator in CsvExporter">
+      <created>1686051201801</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1686051201801</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Add new class 'Parser Application' to get rid of a lot of code lines in 'Main' class">
+      <created>1686052766474</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1686052766474</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Added SneakyThrows exceptions">
+      <created>1686053120102</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1686053120102</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -257,7 +290,9 @@
     <MESSAGE value="Changes in 'main' method, add separate methods for Parse and Export" />
     <MESSAGE value="Problems with output in .csv, while parsing .xlsx" />
     <MESSAGE value="Fixed problems with separator in CsvExporter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed problems with separator in CsvExporter" />
+    <MESSAGE value="Add new class 'Parser Application' to get rid of a lot of code lines in 'Main' class" />
+    <MESSAGE value="Added SneakyThrows exceptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added SneakyThrows exceptions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
