@@ -1,13 +1,13 @@
 package org.example;
 
 
+import lombok.SneakyThrows;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -48,14 +48,13 @@ public class ExcelExporter {
         createCell(row, data);
         System.out.printf("Wrote %s row%n", rownum);
     }
+    @SneakyThrows
     private void saveXlsx(XSSFWorkbook wb, String pathToOutputFile) {
         try (FileOutputStream out = new FileOutputStream((pathToOutputFile))) {
             wb.write(out);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
-    public void preprocessingData(List<Info> infoList, String pathToOutputFile) {
+    private void preprocessingData(List<Info> infoList, String pathToOutputFile) {
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet spreadsheet = wb.createSheet("Projects");
         fillHeader(spreadsheet);

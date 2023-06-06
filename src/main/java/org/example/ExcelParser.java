@@ -7,7 +7,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +14,8 @@ import java.util.Scanner;
 public class ExcelParser {
     public ExcelParser () {
     }
-    public List<Info> readExcel(File file) throws IOException {
+    @SneakyThrows
+    private List<Info> readExcel(File file) {
         List<Info> infoList = new ArrayList<>();
         FileInputStream inputStream = new FileInputStream(file);
         XSSFWorkbook workBook = new XSSFWorkbook(inputStream);
@@ -25,7 +25,7 @@ public class ExcelParser {
             XSSFRow row = sheet.getRow(i);
             String cell = row.getCell(0).toString();
             infoList.add(htmlParser.parsePage(cell));
-            System.out.println("Read %s row".formatted(i));
+            System.out.printf("Read %s row%n", i);
         }
         inputStream.close();
         return infoList;

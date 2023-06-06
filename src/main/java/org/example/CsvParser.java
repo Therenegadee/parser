@@ -2,6 +2,8 @@ package org.example;
 
 
 
+import lombok.SneakyThrows;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,8 @@ import java.util.Scanner;
 public class CsvParser {
     private final HTMLParser htmlParser = new HTMLParser();
     public CsvParser () {}
-    public List<Info> readCSV(File file) {
+    @SneakyThrows
+    private List<Info> readCSV(File file) {
         List<Info> infoList = new ArrayList<>();
         try(FileReader fileReader = new FileReader(file)) {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -21,8 +24,6 @@ public class CsvParser {
             }
             bufferedReader.close();
             return infoList;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

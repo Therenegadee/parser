@@ -1,7 +1,5 @@
 package org.example;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -42,33 +40,4 @@ public class ParserApplication {
             default -> throw new IllegalStateException("Unexpected value: " + chooseFormatOutput);
         }
     }
-
-//    public static List<Info> csvParse() {
-//        System.out.println(CHOOSE_FILE_PATH_IN);
-//        File inputFile = new File(SC.next());
-//        CsvParser csvParser = new CsvParser();
-//        var data = csvParser.readCSV(inputFile);
-//        return data;
-//    }
-
-//    public static void csvExport(List<Info> data) {
-//        CsvExporter csvExporter = new CsvExporter();
-//        System.out.println(CHOOSE_FILE_PATH_OUT);
-//        csvExporter.saveCSV(data, HEADER_DATA, SC.next());
-//    }
-
-
-//    public static List<Info> excelParse() throws IOException {
-//        System.out.println(CHOOSE_FILE_PATH_IN);
-//        File file = new File(SC.next());
-//        ExcelParser excelParser = new ExcelParser();
-//        var data = excelParser.readExcel(file);
-//        return data;
-//    }
-
-//    public static void excelExport(List<Info> data) {
-//        ExcelExporter excelExporter = new ExcelExporter(HEADER_DATA);
-//        System.out.println(CHOOSE_FILE_PATH_OUT);
-//        excelExporter.preprocessingData(data, SC.next());
-//    }
 }

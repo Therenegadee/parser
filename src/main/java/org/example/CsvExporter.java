@@ -1,6 +1,7 @@
 package org.example;
 
 import com.opencsv.CSVWriter;
+import lombok.SneakyThrows;
 
 import java.io.*;
 import java.util.List;
@@ -12,7 +13,8 @@ public class CsvExporter {
     public CsvExporter() {
     }
 
-    private void writeCSV(List<String> headerData, List<Info> infoList, String path) throws IOException {
+    @SneakyThrows
+    private void writeCSV(List<String> headerData, List<Info> infoList, String path) {
         File file = new File(path);
         FileWriter outputFile = new FileWriter(file);
         CSVWriter writer = new CSVWriter(outputFile, ';');
@@ -24,15 +26,11 @@ public class CsvExporter {
         }
     }
 
-    public void saveCSV(List<Info> data, List<String> headerData, String pathOutput) {
+    private void saveCSV(List<Info> data, List<String> headerData, String pathOutput) {
         System.out.println("Введите путь к файлу вывода: ");
-        try {
-            writeCSV(headerData, data, pathOutput);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        writeCSV(headerData, data, pathOutput);
     }
-    public static void exportCSV(List<Info> data, List <String> headerData, String filePathOut) {
+    public void exportCSV(List<Info> data, List <String> headerData, String filePathOut) {
         CsvExporter csvExporter = new CsvExporter();
         Scanner sc = new Scanner(System.in);
         System.out.println(filePathOut);
