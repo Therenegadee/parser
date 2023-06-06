@@ -14,7 +14,7 @@ public class CsvExporter {
     private void writeCSV(List<String> headerData, List<Info> infoList, String path) throws IOException {
         File file = new File(path);
         FileWriter outputFile = new FileWriter(file);
-        CSVWriter writer = new CSVWriter(outputFile);
+        CSVWriter writer = new CSVWriter(outputFile, ';');
         writer.writeNext(headerData.toArray(String[]::new));
         for (int i = 0; i < infoList.size(); i++) {
             Map<Integer, String> infoArray = (DataMap.getDataMap(infoList, i));

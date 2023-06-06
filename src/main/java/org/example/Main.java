@@ -49,7 +49,7 @@ public class Main {
         return data;
     }
 
-    public static void csvExport(List<Info> data) throws IOException {
+    public static void csvExport(List<Info> data) {
         CsvExporter csvExporter = new CsvExporter();
         System.out.println(CHOOSE_FILE_PATH_OUT);
         csvExporter.saveCSV(data, HEADER_DATA, SC.next());
